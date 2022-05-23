@@ -22,7 +22,7 @@ func printBoard() {
 	fmt.Println()
 }
 
-func scanInput() (isValid bool, row int, col int) {
+func scanInput() (row int, col int, inValid bool) {
 	fmt.Print("row: ")
 	fmt.Scanln(&row)
 	row--
@@ -34,10 +34,8 @@ func scanInput() (isValid bool, row int, col int) {
 	if row < 0 || row > 2 || col < 0 || col > 2 ||
 		XO_BOARD[row][col] != "" {
 		fmt.Println("Invalid input!")
-		return
+		inValid = true
 	}
-
-	isValid = true
 	return
 }
 
@@ -65,9 +63,9 @@ func main() {
 
 	for numOfPlayes := 9; numOfPlayes > 0; {
 		println("Player:", currentPlayer)
-		isValid, row, col := scanInput()
+		row, col, inValid := scanInput()
 
-		if !isValid {
+		if inValid {
 			continue
 		}
 
